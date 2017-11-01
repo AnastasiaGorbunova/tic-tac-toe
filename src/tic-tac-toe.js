@@ -10,7 +10,7 @@ class TicTacToe {
     }
 
     nextTurn(rowIndex, columnIndex) {
-        if (!this.field[rowIndex][columnIndex]) {
+        if (this.field[rowIndex][columnIndex]===null) {
             this.field[rowIndex][columnIndex] = this.player;
             if (this.player === 'x') {
                 this.player = 'o';
@@ -24,7 +24,7 @@ class TicTacToe {
     }
 
     isFinished() {
-        if (this.noMoreTurns() || this.getWinner()){
+        if (this.getWinner() || this.isDraw()){
             return true;
         }
         else {
@@ -57,10 +57,10 @@ class TicTacToe {
     }
 
     isDraw() {
-        if (!this.isFinished() || this.getWinner()) {
-            return false;
+        if (!this.getWinner() && this.noMoreTurns()) {
+            return true;
         }
-        return true;
+        return false;
     }
 
     getFieldValue(rowIndex, colIndex) {
